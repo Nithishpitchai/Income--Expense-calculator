@@ -1,4 +1,3 @@
-
 const amountInput = document.getElementById("amount");
 const typeInput = document.getElementById("type");
 const categoryInput = document.getElementById("category");
@@ -6,13 +5,13 @@ const dateInput = document.getElementById("date");
 const addButton = document.getElementById("add-entry");
 const entryList = document.getElementById("entry-list");
 const filterCategory = document.getElementById("filter-category");
+const filterType = document.getElementById("filter-type"); // new
 
 const totalIncomeEl = document.getElementById("total-income");
 const totalExpenseEl = document.getElementById("total-expense");
 const balanceEl = document.getElementById("balance");
 
 let entries = [];
-
 let chart;
 const chartCtx = document.getElementById("chart").getContext("2d");
 
@@ -49,11 +48,14 @@ function updateUI() {
 
 function renderEntries() {
   const selectedCategory = filterCategory.value;
+  const selectedType = filterType.value;
   entryList.innerHTML = "";
 
-  const filtered = selectedCategory === "all"
-    ? entries
-    : entries.filter(e => e.category === selectedCategory);
+  const filtered = entries.filter(e => {
+    const matchCategory = selectedCategory === "all" || e.category === selectedCategory;
+    const matchType = selectedType === "all" || e.type === selectedType;
+    return matchCategory && matchType;
+  });
 
   filtered.forEach((entry, index) => {
     const li = document.createElement("li");
@@ -97,6 +99,7 @@ function updateFilterOptions() {
 }
 
 filterCategory.addEventListener("change", updateUI);
+filterType.addEventListener("change", updateUI); // new
 
 function updateChart() {
   const incomeByCategory = {};
