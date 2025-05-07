@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Income Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Income & Expense Tracker</h1>
+
+    <div id="entry-form">
+      <input type="number" id="amount" placeholder="Amount" />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <input type="text" id="category" placeholder="Category (e.g. Food, Rent)" />
+      <input type="date" id="date" />
+      <button id="add-entry">Add Entry</button>
+    </div>
+
+    <div id="summary">
+      <p><strong>Total Income:</strong> ₹<span id="total-income">0</span></p>
+      <p><strong>Total Expense:</strong> ₹<span id="total-expense">0</span></p>
+      <p><strong>Balance:</strong> ₹<span id="balance">0</span></p>
+    </div>
+
+    <div id="filter">
+      <label for="filter-category">Filter by Category:</label>
+      <select id="filter-category">
+        <option value="all">All</option>
+      </select>
+    </div>
+
+    <ul id="entry-list"></ul>
+
+    <canvas id="chart" width="400" height="400"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
